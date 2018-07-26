@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS Grid test</title>
+    <style>
+    /* Mobile-first layout (fallback for all browsers) */
+    .darkblue {
+        background-color: #7986CB;
+        height: 200px;
+    }
+    .green {
+        background-color: #81C784;
+        height: 100px;
+    }
+    .orange {
+        background-color: #FFB74D;
+        height: 50px;
+    }
+    .lightblue {
+        background-color: #80DEEA;        
+        height: 400px;
+    }
+
+    /* Grid layout */
+    @supports (grid-area: a) {
+        /* Medium and up */
+        @media screen and (min-width: 40em) {
+            .container {
+                display: grid;
+                grid-template-rows: [a] auto [b] auto [c] auto [d]
+            }
+            .darkblue {
+                grid-row: c;
+            }
+            .green {
+                grid-row: a;
+            }
+            .orange {
+                grid-row: b
+            }
+            .lightblue {
+                grid-row: d;
+            }
+        }
+        /* Large and up */
+        @media screen and (min-width: 64em) {
+            .container {
+                grid-template-columns: 1fr 3fr;
+                grid-template-areas: "a a"
+                                     "b b"
+                                     "c d";
+            }
+            .darkblue {
+                grid-area: b;
+            }
+            .green {
+                grid-area: a;
+            }
+            .orange {
+                grid-area: c
+            }
+            .lightblue {
+                grid-area: d;
+            }
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="darkblue"></div>
+        <div class="green"></div>
+        <div class="orange"></div>
+        <div class="lightblue"></div>
+    </div>
+</body>
+</html>
